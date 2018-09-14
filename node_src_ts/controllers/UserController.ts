@@ -37,7 +37,7 @@ export class UserController extends BaseController<User> {
     });
   }
 
-  async register(req: Request, res: Response): Promise<Response> {
+  register = async (req: Request, res: Response): Promise<Response> => {
     const { email, password } = req.body;
 
     try {
@@ -62,7 +62,7 @@ export class UserController extends BaseController<User> {
     }
   }
 
-  async login(req: Request, res: Response): Promise<Response> {
+  login = async (req: Request, res: Response): Promise<Response> => {
     const { email, password } = req.body;
 
     try {
@@ -90,7 +90,7 @@ export class UserController extends BaseController<User> {
     }
   }
 
-  async getProfile(req: Request, res: Response): Promise<Response> {
+  getProfile = async (req: Request, res: Response): Promise<Response> => {
     const currentUser: User = req['user'] as User;
 
     return UserController.resolveResponse(res, 'Profile retrieved successfully', {
@@ -104,7 +104,7 @@ export class UserController extends BaseController<User> {
     });
   }
 
-  async uploadProfile(req: Request, res: Response): Promise<Response> {
+  uploadProfile = async (req: Request, res: Response): Promise<Response> => {
     try {
       const currentUser: User = await this._userRepository.getById((req['user'] as User)._id);
       const { displayName, password } = req.body;
@@ -135,7 +135,7 @@ export class UserController extends BaseController<User> {
     }
   }
 
-  async resetProfilePic(req: Request, res: Response): Promise<Response> {
+  resetProfilePic = async (req: Request, res: Response): Promise<Response> => {
     try {
       const currentUser: User = await this._userRepository.getById((req['user'] as User)._id);
 
